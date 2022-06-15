@@ -1,0 +1,8 @@
+pillow
+django
+django-allauth
+django-rest-framework
+django-jazzmin
+django-rest-auth
+django-rest-framework-swagger
+psycopg2
