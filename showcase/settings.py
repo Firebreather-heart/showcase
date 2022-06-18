@@ -207,36 +207,36 @@ AUTHENTICATION_BACKENDS = [
 
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="Facebook App ID"
-)  
+)
 
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="Facebook App Secret"
-)  
+)
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ["email"]
 
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="Twitter API Key"
-)  
+)
 
 SOCIAL_AUTH_TWITTER_SECRET = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="Twitter API Secret"
-)  
+)
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="Google Consumer Key"
-)  
+)
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="Google Consumer Secret"
-)  
+)
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="Github Key"
-)  
+)
 SOCIAL_AUTH_GITHUB_SECRET = os.environ.get(
     "SOCIAL_AUTH_GITHUB_SECRET", default="github secret"
-)  
+)
 
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
