@@ -212,7 +212,7 @@ img.user-detail {
     float:left;
 }
 .profile-info {
-    float:left;
+    float:left; 
     overflow:auto;
     margin-right:20px;
 }
