@@ -1,5 +1,5 @@
 pillow
-django
+django~=3.2.9
 django-allauth
 django-rest-framework
 django-jazzmin

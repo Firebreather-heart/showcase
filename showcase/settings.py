@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,11 +22,14 @@ import os
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-(3ny70fl6d^v2jyt*2vd1+&abx2@nk&_$mkmmv^@oycp*p92__"
+# SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -37,12 +41,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-
     # 3rd party
     "social_django",
-    'django_extensions',
+    "django_extensions",
     "jazzmin",
-
     # Internal Apps
     "account",
 ]
@@ -55,9 +57,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
     # Social media
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    # "social_django.middleware.SocialAuthExceptionMiddleware",
 ]
 
 ROOT_URLCONF = "showcase.urls"
@@ -77,10 +78,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-
                 # Social media context processor
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -109,9 +109,9 @@ WSGI_APPLICATION = "showcase.wsgi.application"
 
 """ Test Database settings for Showcase"""
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
 
@@ -177,44 +177,66 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Authentication Login Settings
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "dashboard"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
 """ Email details for the showcase project"""
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = "smtp.outlook.com"
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-# DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.outlook.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", default="Email host user")
+EMAIL_HOST_PASSWORD = os.environ.get(
+    "EMAIL_HOST_PASSWORD", default="Email host password"
+)
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", default="Email host password")
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # DEFAULT_FROM_EMAIL = "admin@showcase.com"
 
 """ Social Media Authentication Email Backend"""
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.github.GithubOAuth2',
+    "django.contrib.auth.backends.ModelBackend",
+    "account.authentication.EmailAuthBackend",
+    "social_core.backends.facebook.FacebookOAuth2",
+    "social_core.backends.twitter.TwitterOAuth",
+    "social_core.backends.google.GoogleOAuth2",
+    "social_core.backends.github.GithubOAuth2",
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = ''  # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = ''  # Facebook App Secret
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="Facebook App ID"
+)  
 
-SOCIAL_AUTH_TWITTER_KEY = ''  # Twitter API Key
-SOCIAL_AUTH_TWITTER_SECRET = ''  # Twitter API Secret
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="Facebook App Secret"
+)  
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''  # Google Consumer Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''  # Google Consumer Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ["email"]
 
-SOCIAL_AUTH_GITHUB_KEY = ''  # Github Key
-SOCIAL_AUTH_GITHUB_SECRET = ''  # Githib secret
+SOCIAL_AUTH_TWITTER_KEY = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="Twitter API Key"
+)  
+
+SOCIAL_AUTH_TWITTER_SECRET = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="Twitter API Secret"
+)  
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="Google Consumer Key"
+)  
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="Google Consumer Secret"
+)  
+
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="Github Key"
+)  
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get(
+    "SOCIAL_AUTH_GITHUB_SECRET", default="github secret"
+)  
 
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
